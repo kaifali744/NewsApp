@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NewsApp</string>
+    <string name="title_home" translatable="false">Headlines</string>
+    <string name="title_search" translatable="false">Search</string>
+    <string name="title_favorites" translatable="false">Favorites</string>
+    <string name="api_key">5a92147a8a99416bb2c79176a277f284</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
