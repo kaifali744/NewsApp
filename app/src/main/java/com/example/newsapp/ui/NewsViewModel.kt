@@ -18,18 +18,18 @@ import retrofit2.Response
 
 class NewsViewModel(app : Application, val newsRepository: NewsRepository) : AndroidViewModel(app) {
 
-    private val headlines : MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
-    private var headlinesPage = 1
-    private var headlinesResponse : NewsResponse? = null
+     val headlines : MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
+     var headlinesPage = 1
+     var headlinesResponse : NewsResponse? = null
 
-    private val searchNews : MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
-    private var searchNewsPage = 1
-    private var searchNewsResponse : NewsResponse? = null
-    private var newSearchQuery : String? = null
-    private var oldSearchQuery : String? = null
+     val searchNews : MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
+     var searchNewsPage = 1
+     var searchNewsResponse : NewsResponse? = null
+     var newSearchQuery : String? = null
+     var oldSearchQuery : String? = null
 
     init {
-        getHeadlines("us")
+        getHeadlines("in")
     }
 
     fun getHeadlines(countryCode: String) = viewModelScope.launch {
@@ -84,7 +84,7 @@ class NewsViewModel(app : Application, val newsRepository: NewsRepository) : And
         newsRepository.deleteArticle(article)
     }
 
-    private fun getFavourites() = newsRepository.getFavourites()
+    fun getFavourites() = newsRepository.getFavourites()
 
     private fun internetConnection(context: Context): Boolean{
         (context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager).apply {
