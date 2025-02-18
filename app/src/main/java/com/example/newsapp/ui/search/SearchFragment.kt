@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -78,12 +79,12 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
         var job : Job? = null
         binding.searchEdit.addTextChangedListener { editable ->
-            job?.cancel()
-            job = MainScope().launch {
-                delay(SEARCH_NEWS_TIME_DELAY)
+            job?.cancel()  // Cancel the previous job to avoid multiple searches being triggered
+            job = lifecycleScope.launch { // Using lifecycleScope for a lifecycle-aware coroutine
+                delay(SEARCH_NEWS_TIME_DELAY) // Wait for the user to stop typing for the specified delay
                 editable?.let {
-                    if (it.toString().isEmpty()) {
-                        newsViewModel.searchNews(it.toString())
+                    if (it.toString().isNotEmpty()) {  // Perform the search only if the text is not empty
+                        newsViewModel.searchNews(it.toString())  // Trigger the search
                     }
                 }
             }

@@ -104,7 +104,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         // Retry button pe click hone par news fetch karna
         retryButton.setOnClickListener {
-            newsViewModel.getHeadlines("in")
+            newsViewModel.getHeadlines("us")
         }
     }
 
@@ -159,7 +159,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             // Agar conditions match ho, toh next page load karna
             if (shouldPaginate){
-                newsViewModel.getHeadlines("in")
+                newsViewModel.getHeadlines("us")
                 isScrolling = false
             }
         }
